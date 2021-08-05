@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Material Design Bootstrap -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/css/mdb.min.css">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="./css/style.css">
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/js/mdb.min.js"></script>
+
+    <title>CINETV</title>
+</head>
+
+<body>
+    <header>
+        <div class="menu_principal">
+            <!--Navbar-->
+            <nav class="navbar navbar-light mb-2">
+                <!-- Collapse button -->
+                <button class="navbar-toggler toggler-example navbar-area-color" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent41" aria-controls="navbarSupportedContent41"
+                    aria-expanded="false" aria-label="Toggle navigation"><span class="white-text"><i
+                            class="fas fa-bars fa-1x"></i></span></button>
+
+                <!-- Navbar Brand -->
+                <a class="navbar-brand cinetv-logo" href="#">
+                    <h1>CINE<span class="navbar-brand-tv">TV</span></h1>
+                </a>
+
+                <!-- Search form -->
+                <input class="form-control tablet-navbar-element" type="text" placeholder="Search" aria-label="Search">
+
+                <!-- Loggeo form -->
+                <button type="button" class="btn navbar-area-color btn-rounded tablet-navbar-element white-text">Sign
+                    In</button>
+                <button type="button"
+                    class="btn navbar-area-color btn-rounded tablet-navbar-element white-text">Register</button>
+
+                <a type="button" class="desktop-navbar-element"><img src="imgs/user-icon.png" id="user-icon" alt=""></a>
+
+                <!-- Navbar Image Brand -->
+                <img src="imgs/Lupa.png" alt="Lupa" class="menu-icon">
+
+                <!-- Collapsible content -->
+                <div class="collapse navbar-collapse" id="navbarSupportedContent41">
+                    <!-- Links -->
+                    <ul class="navbar-nav mr-auto cinetv-titulo">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Peliculas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Series</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Reviews</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contacto</a>
+                        </li>
+                    </ul>
+                    <!-- Links -->
+                </div>
+                <!-- Collapsible content -->
+            </nav>
+            <!--/.Navbar-->
+        </div>
+    </header>
+    <div class="container" id=app>
+
+        <!-- Banner Principal -->
+        <div class="area-banner-principal pt-3 pb-3">
+            <div class="container">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" :src="tablaBanner.ruta_banner" allowfullscreen></iframe>
+                </div>
+            </div>
+            <!-- Banner Principal END-->
+
+            <!-- Trapezoide  -->
+            <div class="area-anuncio pt-3 pb-3 d-flex">
+                <div class="container">
+                    <a class="anuncio-cinetv-desktop"><img :src='tablaBanner.ruta_imgTrapecio' id="cinetv-anuncio-d"
+                            class="float-right" alt=""></a>
+                </div>
+            </div>
+            <!-- Trapezoide END-->
+
+            <!-- Carrousel -->
+            <div class="area-carrousel-peliculas pt-3 pb-3 text-center">
+                <div class=" container">
+                    <div class="row white-text cinetv-titulo justify-content-center pt-3 pb-4 ">Agregadas recientemente
+                    </div>
+                    <div class="row white-text cinetv-contenido justify-content-center pt-3 pb-4 ">Presiona la imagen
+                        para revelar informacion debajo</div>
+                    <div id="carousel-peliculas" class="carousel slide carousel-fade" data-ride="carousel">
+                        <!--Slides-->
+                        <div class="carousel-inner" role="listbox">
+                            <div class="carousel-item active" v-for="(item, index) in tablaCarousel" v-if="index==0"
+                                onclick="mostrarDescripcion()">
+                                <carrousel-component :id="item.id" :nombre="item.name" :ruta-img="item.ruta_img"
+                                    :portada="item.ruta_imgSecundaria" :descripcion="item.descripcion"
+                                    :ruta-video="item.ruta_video" :pos="item.id+'-slide'"
+                                    @clicked="showDescription($event)"></carrousel-component>
+                            </div>
+                            <div class="carousel-item" v-for="(item, index) in tablaCarousel" v-if="index!=0"
+                                onclick="mostrarDescripcion()">
+                                <carrousel-component :id="item.id" :nombre="item.name" :ruta-img="item.ruta_img"
+                                    :portada="item.ruta_imgSecundaria" :descripcion="item.descripcion"
+                                    :ruta-video="item.ruta_video" :pos="item.id+'-slide'"
+                                    @clicked="showDescription($event)"></carrousel-component>
+                            </div>
+                        </div>
+                        <!--/.Slides-->
+                        <!--Controls-->
+                        <a class="carousel-control-prev" href="#carousel-peliculas" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carousel-peliculas" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+
+                    </div>
+                    <!-- fin area-carrousel -->
+                </div>
+            </div>
+            <!-- Carrousel END-->
+
+
+            <!-- Top 1 / view overlay zoom y el div debajo de img hacen el zoom-->
+            <div class="area-portada pt-3 pb-3" id="show-review">
+                <div class="container">
+                    <div class="row">
+                        <div class="col overflow-hidden view overlay zoom">
+                            <img :src="imgS" class="cinetv-portada-pelicula" alt="">
+                            <div class="mask flex-center waves-effect waves-light">
+                                <p class="white-text cinetv-titulo"></p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="cinetv-text-area overflow-auto">
+                                <p class="white-text font-small cinetv-contenido cinetv-descripcion">{{ description }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Top 1 END-->
+
+
+            <!-- Banner Secundario -->
+            <div class="area-banner-secundario pt-3 pb-3" id="show-review-v">
+                <div class="container">
+                    <div class="embed-responsive embed-responsive-16by9 pb-5">
+                        <iframe width="560" height="315" :src="vid" frameborder="0"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+            <!-- Banner Secundario END-->
+
+
+            <!-- Recomendaciones -->
+            <div class="area-recomendaciones pt-2 pb-3">
+                <div class="container">
+                    <div class="row white-text cinetv-titulo justify-content-center pt-1 pb-4">Nuestras recomendaciones
+                    </div>
+                    <div class="row">
+                        <div class="col overflow-hidden view overlay zoom" v-for="destacados in tablaDestacados">
+                            <destacados-component :id="destacados.id" :ruta="destacados.ruta_img1"
+                                :name="destacados.name_img1"></destacados-component>
+                        </div>
+                        <div class="col overflow-hidden view overlay zoom" v-for="destacados in tablaDestacados">
+                            <destacados-component :id="destacados.id" :ruta="destacados.ruta_img2"
+                                :name="destacados.name_img2"></destacados-component>
+                        </div>
+                        <div class="col overflow-hidden view overlay zoom" v-for="destacados in tablaDestacados">
+                            <destacados-component :id="destacados.id" :ruta="destacados.ruta_img3"
+                                :name="destacados.name_img3"></destacados-component>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Recomendaciones END-->
+
+
+            <!-- Actores -->
+            <div class="area-carrousel-peliculas pt-3 pb-3 overflow-auto">
+                <div class="container">
+                    <div class="row white-text cinetv-titulo justify-content-center pt-1 pb-4 ">Actores destacados</div>
+                    <div class="col">
+                        <div class="row">
+                            <div class="slider">
+                                <div class="d-flex flex-nowrap slide-track1">
+                                    <div class="slide" v-for="actores in tablaActores">
+                                        <slide :name="actores.name" :ruta-img="actores.ruta_img"></slide>
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-nowrap slide-track2">
+                                    <div class="slide2" v-for="actores in tablaActores2">
+                                        <slide :name="actores.name" :ruta-img="actores.ruta_img"></slide>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Actores END-->
+        </div>
+    </div>
+    <footer>
+        <div class="page-footer font-small footer-area align-bottom cinetv-footer">
+            <div class="container">
+                <div class="row d-flex justify-content-center">
+                    <!--CINETV Text-->
+                    <div class="col pt-3 pb-1 text-center">
+                        <p class="">CINE<span class="navbar-brand-tv">TV</span></p>
+                    </div>
+                    <div class="col pt-3 pb-1"></div>
+                    <!--Footer Icons-->
+                    <div class="col pt-3 text-center pb-1">
+                        <!-- Facebook -->
+                        <a class="pt-1 pb-1">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <!--Instagram-->
+                        <a class="pt-1 pb-1 pl-1">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <!--Twitter-->
+                        <a class="pt-1 pb-1 pl-1">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <!--Youtube-->
+                        <a class="pt-1 pb-1 pl-1">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                    <div class="col pt-3 pb-1"></div>
+                    <!--Language Options-->
+                    <div class="col text-center pt-1 pb-1">
+                        <div class="dropup">
+                            <!--Trigger-->
+                            <div class="dropdown-menu dropdown-primary">
+                                <a class="dropdown-item" href="#">Español</a>
+                                <a class="dropdown-item" href="#">Ingles</a>
+                            </div>
+                            <button class="btn btn-sm dropdown-toggle p-2" type="button" id="dropdownMenu1"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Idioma</button>
+                            <!--Menu-->
+                        </div>
+                    </div>
+                    <!--/Language Options-->
+                </div>
+
+                <div class="row justify-content-center text-center pb-3">
+                    <div class="col">
+                        <div class="row justify-content-around">
+                            <a href="" class="footer-link">Home</a>
+                            <a href="" class="footer-link">Peliculas</a>
+                            <a href="" class="footer-link">Series</a>
+                            <a href="" class="footer-link">Reviews</a>
+                            <a href="" class="footer-link">Contacto</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script>
+
+        Vue.component('carrousel-component', {
+            props: ['id', 'nombre', 'rutaImg', 'portada', 'descripcion', 'rutaVideo', 'pos'],
+
+            template: '<div class="" @click="pasarDatos(rutaImg, descripcion, rutaVideo)">' +
+                '<img class="cinetv-portada-pelicula-c" :src="rutaImg">' +
+                '</div>',
+
+            methods: {
+                pasarDatos(image, description, ruta) {
+                    this.$emit('clicked', { imgS: image, desc: description, video: ruta });
+                }
+            }
+        });
+
+        Vue.component('carrousel-actores', {
+            props: ['id', 'nombre', 'rutaImg', 'portada', 'descripcion', 'rutaVideo', 'pos'],
+
+            template: '<div class="">' +
+                '<img class="cinetv-portada-pelicula-c" :src="rutaImg"></div>'
+        });
+
+        Vue.component('slide', {
+            props: ['name', 'rutaImg'],
+
+            template: '<img class="cinetv-actores" :src="rutaImg" :alt="name">'
+        });
+
+        Vue.component('destacados-component', {
+            props: ['id', 'ruta', 'name'],
+
+            template: '<img :src="ruta" class="cinetv-portada-pelicula" alt="">' +
+                '<div class="mask flex-center waves-effect waves-light">' +
+                    '<p class="white-text cinetv-titulo">Ver review</p>'+
+                '</div> '+
+                '<div class="white-text cinetv-contenido text-center pt-3 pb-4 ">{{name}}</div>'
+        });
+
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                items: null,
+                vid: '',
+                description: '',
+                imgS: '',
+                //ArrayTablas
+                tablaBanner: '',
+                tablaCarousel: null,
+                tablaDestacados: null,
+                tablaActores: null,
+                tablaActores2: null
+            },
+            mounted: function () {
+                fetch("http://localhost:8000/cinetv")
+                    .then(response => response.json())
+                    .then(data => {
+
+                        this.items = data;
+                        this.tablaBanner = data[0][0];
+                        this.tablaCarousel = data[1];
+                        this.tablaDestacados = data[2];
+                        this.tablaActores = data[3];
+                        this.tablaActores2 = this.tablaActores.slice().reverse();
+
+                        console.log(data);
+                    })
+
+            }, methods: {
+
+                showDescription(obj) {
+                    console.log('showDescription ->' + obj);
+                    this.vid = obj.video;
+                    this.imgS = obj.imgS;
+                    this.description = obj.desc;
+                }
+            }
+        });
+
+        var clic = 0;
+
+        function mostrarDescripcion() {
+
+            if (clic == 0) {
+
+                document.getElementById("show-review").style.display = "block";
+                document.getElementById("show-review-v").style.display = "block";
+                clic = 1;
+                //console.log(clic);
+
+            } else {
+
+                document.getElementById("show-review").style.display = "none";
+                document.getElementById("show-review-v").style.display = "none";
+
+                clic = 0;
+                // console.log(clic);
+            }
+
+        }
+        function pause() {
+            document.getElementById('#carousel-publicidad').carousel({ pause: 'hover' });
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,334 @@
+@import 'media-queries';
+
+/*Importacion de fuentes*/
+@font-face {
+    font-family: 'CaviarDreams';
+    src: url('../fonts/CaviarDreams.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'CaviarDreamsB';
+    src: url('../fonts/CaviarDreams_Bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GillSansMT';
+    src: url('../fonts/GillSansMTMedium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body{
+    background-color: #001D33;
+}
+
+
+/*Modificaciones Navbar*/
+.navbar{
+    background-color: #FAFBFC;
+}
+
+.navbar-area-color{
+    background-color: #001D33;
+}
+
+.navbar-brand{
+    color: #001D33;
+    font-weight: bold;
+}
+
+.navbar-brand-tv{
+    color: #E843C5;
+}
+
+.menu-icon{
+    width: 7%;
+    @include respond-to($tablet){
+        display: none;
+    }
+    @include respond-to($desktop){
+        display: none;
+    }
+}
+
+.desktop-navbar-element{
+    @include respond-to($phone){
+        display: none;
+    }
+    @include respond-to($tablet){
+        display: none;
+    }
+}
+
+.tablet-navbar-element{
+    @include respond-to($phone){
+        display: none;
+    }
+}
+
+.form-control{
+    width: 45%;
+    @include respond-to($desktop){
+        width: 65%;
+    }
+}
+
+#user-icon{
+    width: 40%;
+}
+
+/*Modificaciones Navbar End*/
+
+
+/*Areas*/
+#show-review{
+    display: none;
+}
+#show-review-v{
+    display: none;
+}
+/*Areas End*/
+
+
+/*Carousel*/
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  height: 300x;
+  width: 300px;;
+  outline: white;
+  border: 5px solid white;
+  border-radius: 15%;
+}
+.carousel .carousel-control-next-icon,.carousel .carousel-control-prev-icon {
+    // background-image: '';
+    width: 80px;
+    height: 120px;
+    color: white;
+    @include respond-to($phone){
+        width: 60px;
+        height: 90px;
+    }
+}
+/* Fin del area de carousel*/
+
+
+/* Actores */
+.slider {
+    background: none;
+	box-shadow: 0 10px 20px -5px rgba(0, 0, 0, .125);
+	height: 200px;
+    margin: auto;
+	overflow:hidden;
+	position: relative;
+	//width: calc(250px * 14);
+	
+	&::before,
+	&::after {
+		//@include white-gradient;
+		content: "";
+		height: 100px;
+		position: absolute;
+		width: 200px;
+		z-index: 2;
+	}
+	
+	&::after {
+		right: 0;
+		top: 0;
+		transform: rotateZ(180deg);
+	}
+
+	&::before {
+		left: 0;
+		top: 0;
+    }
+
+    @include respond-to($phone){
+        @keyframes sli1 {
+            0%{transform: translateX(500px);
+            }
+            100% {transform:translateX(-8600px)
+            }
+        }
+        @keyframes sli2 {
+            0%{transform: translateX(500px);
+            }
+            100% {transform:translateX(-6700px)
+            }
+        }
+    }
+    @include respond-to($tablet){
+        @keyframes sli1 {
+            0%{transform: translateX(1250px);
+            }
+            100% {transform:translateX(-630px * 14)
+            }
+        }
+        @keyframes sli2 {
+            0%{transform: translateX(1250px);
+            }
+            100% {transform:translateX(-500px * 14)
+            }
+        }
+    }
+    @include respond-to($desktop){
+        @keyframes sli1 {
+            0%{transform: translateX(1250px);
+            }
+            100% {transform:translateX(-8700px)
+            }
+        }
+        @keyframes sli2 {
+            0%{transform: translateX(1250px);
+            }
+            100% {transform:translateX(-7000px)
+            }
+        }
+    }
+
+        /*
+        @keyframes sli2 {
+        0%{transform: translateX(500px);
+      }
+        100% {transform:translateX(-250px * 7)
+      }
+     }
+        */
+     .cinetv-actores{
+        width: 100%;
+     }
+	.slide-track1 {
+         animation: 200s linear infinite normal none running sli1; // 60s
+        width: calc(450px * 20);
+    }
+    .slide-track2 {
+		animation: 110s linear infinite normal none running sli2; //80s
+		width: calc(350px * 20);
+	}
+	
+	.slide, .slide2 {
+		height: 100px;
+        width: 250px;
+        margin-right: auto;
+        align-items: center;
+
+        @include respond-to($phone) {
+            height: 90px;
+            width: 200px
+        }
+    }
+}
+/* Fin del area Actores */
+
+
+/*Imagenes*/
+.cinetv-portada-pelicula{
+    width: 100%;
+}
+
+.anuncio-cinetv{
+    @include respond-to($desktop){
+        display: none;
+    }
+}
+
+.anuncio-cinetv-desktop{
+    @include respond-to($tablet){
+        display: none;
+    }
+    @include respond-to($phone){
+        display: none;
+    }
+}
+
+#cinetv-anuncio{
+    @include respond-to($tablet){
+        width: 100%;
+    }
+    @include respond-to($phone){
+        width: 100%;
+    }
+}
+
+#cinetv-anuncio-d{
+    width: 100%;
+}
+
+.cinetv-portada-pelicula-c{
+    width: 55%;    
+}
+/*Imagenes End*/
+
+
+/* Area de Fuentes */
+.cinetv-logo{
+    font-family: 'GillSansMT';
+    font-size: 28pt;
+}
+
+.cinetv-titulo{
+    font-family: 'GillSansMT';
+    font-size: 22pt;
+
+    @include respond-to($phone){
+        font-size: 15pt;
+    }
+}
+
+.cinetv-contenido{
+    font-family: "CaviarDreams";
+    font-size: 15pt;
+    @include respond-to($phone){
+        font-size: 10pt;
+    }
+}
+
+/*Overflow*/
+.cinetv-text-area{
+    @include respond-to($phone){
+        max-height: 260px;
+        max-width: 205px;
+    }
+    @include respond-to($tablet){
+        max-height: 665px;
+        max-width: 480px;
+    }
+    @include respond-to($desktop){
+        max-height: 800px;
+        max-width: 570px;
+    }
+}
+
+.cinetv-footer{
+    font-family: 'GillSansMT';
+    font-size: 15pt;
+    @include respond-to($phone){
+        font-size: 12pt;
+    }
+}
+/*Fin de area de fuentes*/
+
+
+/*Footer*/
+.footer-area{
+    background-color: #FAFBFC;
+    width: 100%;
+}
+
+.footer-link{
+    color: #001D33;
+}
+/*Fin de Area Footer*/
+
+
+/*
+    Color 5: #001D33
+    Color 4: #005387
+    Color 3: #006BAD
+    Color 2: #E843C5
+    Color 1: #FAFBFC
+*/
